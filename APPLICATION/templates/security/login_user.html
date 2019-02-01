@@ -1,0 +1,64 @@
+<head>
+<link rel="stylesheet" href="/static/login.css">
+<link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="login-box">
+        <div class="login-logo">
+            <strong>{{ g.config['SITE_TITLE'].split()[0] }}</strong>{{ g.config['SITE_TITLE'].split()[1] }}
+        </div>
+        <div class="card card-primary">
+          <div class="card-header text-center">Connecter vous à votre compte</div>
+            <div class="card-body login-card-body">
+                {# Display errors (if there are any). #}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="log-error">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                {% from "security/_macros.html" import render_field_with_errors, render_field %}
+                <div class="row">
+                    <div class="col-md-12 log">
+                        <form class="login_form" action="{{ url_for_security('login') }}" method="POST"
+                              name="login_user_form">
+                            {{ login_user_form.hidden_tag() }}
+                            <div class="login_mail_form col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon fa fa-envelope form-control-feedback"></span>
+                                    </div>
+                                    {{ render_field_with_errors(login_user_form.email, class='form-control', placeholder='Email') }}
+                                </div>
+                            </div>
+                            <div class="login_password_form col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon2">
+                                        <span class="glyphicon fa fa-lock form-control-feedback"></span>
+                                    </div>
+                                    {{render_field_with_errors(login_user_form.password, class='form-control', placeholder='Mot de passe') }}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="login_password_form col-md-12">
+                  <div style="display:block;" class="input-group">
+                    {{ login_user_form.submit(value='Valider', class='log-btn btn btn-primary') }}
+                    ou
+                    <a href="/register" class="btn btn-primary">S'enregistrer</a>
+                  </div>
+              </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>

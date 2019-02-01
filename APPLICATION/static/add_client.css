@@ -1,0 +1,11 @@
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+    content: "Parcourir"!important;
+}
+
+.card-footer {
+    text-align:center;
+}
+
+.card-header {
+    text-align:center;
+}

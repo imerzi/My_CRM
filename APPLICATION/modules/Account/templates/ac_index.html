@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/admin.css">
+{% endblock %}
+{% block content %}
+<div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Error message | Categories: success (green), info (blue), warning (yellow), error (red) -->
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container-fluid">
+        <div class="row">
+            <div style="margin:auto;" class="col-lg-6">
+                <!-- CARD -->
+                <div class="card">
+
+                    <!-- CARD HEADER START -->
+                    <div class="card-header text-center"><h3 class="card-title">Modifier les informations de votre
+                        compte.</h3></div>
+                    <!-- CARD HEADER END -->
+
+                    <!-- FORM START -->
+                    <form class="modify_user_form" action="{{ url_for('account.change_user', user_id=user.id) }}"
+                          method="POST">
+
+                        <label></label>
+                        <div class="create_user_mail col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <input value="{{user.email}}" name="email" type="email" class="form-control"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="create_user_password col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <input name="password" type="password" class="form-control" placeholder="Mot de passe">
+                            </div>
+                        </div>
+
+                        <div class="create_user_submit col-md-12">
+                            <input class="class='log-btn btn btn-info" type=submit value=Valider>
+                        </div>
+                        <label></label>
+                    </form>
+                    <!-- FORM END -->
+                </div>
+            </div>
+            <!-- CARD END -->
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+{% endblock %}

@@ -1,0 +1,24 @@
+div.input-group:nth-child(2) > div:nth-child(1)
+{
+    display:none;
+}
+
+div.input-group:nth-child(4) > div:nth-child(1) > span:nth-child(1)
+{
+    display:none;
+}
+
+div.col-md-6:nth-child(2) > label:nth-child(2)
+{
+    margin-left:2vh;
+}
+
+#interview_standby
+{
+    margin-left:-1vh;
+}
+
+#interview_seek
+{
+    margin-left:-1vh;
+}

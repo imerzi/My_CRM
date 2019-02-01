@@ -1,0 +1,19 @@
+.card-body div img{
+    border-radius:0%!important;
+}
+
+.profile-user-img {
+    width:120px!important;
+}
+
+.custom-file-label {
+    left:8px!important;
+}
+
+.profile-user-img {
+    border:none!important;
+}
+
+.custom-file-label::after {
+    content: "Parcourir"!important;
+}

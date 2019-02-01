@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/admin.css">
+<script type="text/javascript" src="/static/script.js"></script>
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div style="margin:auto;" class="col-lg-6">
+                <!-- CARD -->
+                <div class="card">
+
+                    <!-- CARD HEADER START -->
+                    <div class="card-header text-center"><h3 class="card-title">Ajouter un utilisateur</h3></div>
+                    <!-- CARD HEADER END -->
+
+                    <!-- FORM START -->
+                    <form class="create_user_form" action="{{url_for('admin.add_user')}}" method="POST" enctype="multipart/form-data">
+
+                        <label></label>
+                        <div class="create_user_mail col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <input name="email" type="email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="create_user_mail col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input name="name" type="text" class="form-control" placeholder="Nom">
+                            </div>
+                        </div>
+                        <div class="create_user_mail col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input name="firstname" type="text" class="form-control" placeholder="Prénom">
+                            </div>
+                        </div>
+                        <div class="create_user_mail col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                </div>
+                                <input name="phone" type="text" class="form-control" placeholder="Téléphone">
+                            </div>
+                        </div>
+                        <div class="create_user_password col-md-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <input name="password" type="text" class="form-control" placeholder="Mot de passe">
+                            </div>
+                        </div>
+
+                        <div class="create_user_signing col-md-6">
+                            <label for="input_file" class="text-center my_label">Signature</label>
+                            <div class="custom-file">
+                                <input id="input_file" class="custom-file-input" type=file name="signing">
+                                <label class="custom-file-label" for="input_file">Choisir une signature</label>
+                            </div>
+                        </div>
+
+                        <div class="create_user_submit col-md-12">
+                            <input class="class='log-btn btn btn-info" type=submit value=Valider>
+                            <a href="{{url_for('admin.index')}}" class="btn btn-info">
+                                Retour
+                            </a>
+                        </div>
+                        <label></label>
+                    </form>
+                    <!-- FORM END -->
+                </div>
+            </div>
+            <!-- CARD END -->
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>
+<!-- /.content -->
+{% endblock %}
+

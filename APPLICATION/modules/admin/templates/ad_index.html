@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="/static/admin.css">
+{% endblock %}
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="user_table col-md-12">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <!-- <strong>Title</strong> --> {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste d'utilisateurs</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <div class="input-group-append">
+                                    <a href="{{ url_for('admin.create_user') }}" class="btn btn-info"><i
+                                            class="fa fa-plus"></i> Créer utilisateur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Téléphone</th>
+                                <th>Date de création</th>
+                                <th class="align-right">Date de modification</th>
+                                <th class="align-right">Supprimer</th>
+                                <th class="align-right">Modifier</th>
+                            </tr>
+                            </thead>
+                            {% for user in users %}
+                            <tbody>
+                            <tr>
+                                <td class="valign-middle" data-label="Email">
+                                    {{ user.email }}
+                                </td>
+                                <td class="valign-middle align-right" data-label="Nom">
+                                    {% if user.last_name %}
+                                    {{ user.last_name }}
+                                    {% endif %}
+                                </td>
+                                <td class="valign-middle align-right" data-label="Prénom">
+                                    {% if user.first_name %}
+                                    {{ user.first_name }}
+                                    {% endif %}
+                                </td>
+                                <td class="valign-middle align-right" data-label="Téléhpone">
+                                    {% if user.phone %}
+                                    {{ user.phone }}
+                                    {% endif %}
+                                </td>
+                                <td class="valign-middle align-right" data-label="Date de création">
+                                    {{ user.creation_date.date() }}
+                                </td>
+                                <td class="valign-middle align-right" data-label="Date de modification">
+                                    {{ user.modified_date.date() }}
+                                </td>
+                                <td class="valign-middle align-right">
+                                    <form onsubmit="return confirm('Confirmer la suppression?');"
+                                          action="{{ url_for('admin.delete_user', user_id=user.id) }}" method=post>
+                                        <button class="btn btn-default" type="submit" title="Supprimer">
+                                            <i class="fa fa-trash"></i>
+                                            <span class="visible-xs">Supprimer</span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="valign-middle align-right">
+                                    <form action="{{ url_for('admin.modify_user', user_id=user.id) }}" method=post>
+                                        <button class="btn btn-default" data-toggle="tooltip" title="Modifier"
+                                                data-placement="bottom" data-trigger="hover">
+                                            <i class="fa fa-cog"></i>
+                                            <span class="visible-xs">Modifier</span>
+                                        </button>
+                                    </form>
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+{% endblock %}

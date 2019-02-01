@@ -1,0 +1,35 @@
+.form_create_user {
+    text-align: center;
+    margin-bottom: 3vh;
+}
+
+.create_user_mail {
+    margin:auto;
+    margin-bottom:2vh;
+}
+
+.create_user_password {
+    margin:auto;
+}
+
+.create_user_title {
+    text-align:center;
+}
+
+.create_user_submit {
+    text-align:center;
+    margin-top:2vh;
+}
+
+.create_user_signing {
+    margin-top:2vh;
+    margin:auto;
+}
+
+.custom-file-label::after {
+    content: "Parcourir"!important;
+}
+
+.input-group-addon{margin-right:1vh;}
+
+.input-group-addon2{margin-right:1.7vh;}

@@ -1,0 +1,72 @@
+<head>
+<link rel="stylesheet" href="/static/register.css">
+<link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="/static/plugins/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="register-box">
+        <div class="register-logo">
+            <strong>{{ g.config['SITE_TITLE'].split()[0] }}</strong>{{ g.config['SITE_TITLE'].split()[1] }}
+        </div>
+        <div class="card card-primary">
+          <div class="card-header text-center">Créer votre compte</div>
+            <div class="card-body register-card-body">
+                {# Display errors (if there are any). #}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="log-error">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                {% from "security/_macros.html" import render_field_with_errors, render_field %}
+                <div class="row">
+                    <div class="col-md-12 log">
+                        <form class="register_form" action="{{ url_for_security('register') }}" method="POST"
+                              name="register_user_form">
+                            {{ register_user_form.hidden_tag() }}
+                            <div class="register_mail_form col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon fa fa-envelope form-control-feedback"></span>
+                                    </div>
+                                    {{ render_field_with_errors(register_user_form.email, class='form-control', placeholder='Email') }}
+                                </div>
+                            </div>
+                            <div class="register_password_form col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon2">
+                                        <span class="glyphicon fa fa-lock form-control-feedback"></span>
+                                    </div>
+                                    {{render_field_with_errors(register_user_form.password, class='form-control', placeholder='Mot de passe') }}
+                                </div>
+                            </div>
+                            <div class="register_password_form col-md-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon2">
+                                        <span class="glyphicon fa fa-lock form-control-feedback"></span>
+                                    </div>
+                                    {{render_field_with_errors(register_user_form.password_confirm, class='form-control', placeholder='Confirmer mot de passe') }}
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+              <div class="login_password_form col-md-12">
+                  <div style="display:block;" class="input-group">
+                    {{ register_user_form.submit(value='Valider', class='log-btn btn btn-primary') }}
+                    ou
+                    <a href="/login" class="btn btn-primary">Connexion</a>
+                  </div>
+              </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
